@@ -34,8 +34,8 @@ bool Read_From_Binary_File(ifstream& bin, char* certain_type);
 
 int main()
 {
-	SetConsoleCP(1251);// установка кодовой страницы win-cp 1251 в поток ввода
-	SetConsoleOutputCP(1251); // установка кодовой страницы win-cp 1251 в поток вывода
+	SetConsoleCP(1251);// СѓСЃС‚Р°РЅРѕРІРєР° РєРѕРґРѕРІРѕР№ СЃС‚СЂР°РЅРёС†С‹ win-cp 1251 РІ РїРѕС‚РѕРє РІРІРѕРґР°
+	SetConsoleOutputCP(1251); // СѓСЃС‚Р°РЅРѕРІРєР° РєРѕРґРѕРІРѕР№ СЃС‚СЂР°РЅРёС†С‹ win-cp 1251 РІ РїРѕС‚РѕРє РІС‹РІРѕРґР°
 
 	ifstream fin("inp1.txt");
 
@@ -45,28 +45,28 @@ int main()
 
 	if (fin.is_open())
 	{
-		cout << "Текстовый файл успешно открыт" << endl;
+		cout << "РўРµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р» СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚" << endl;
 		Read_From_Txt_File(a, fin, n);
 		Sort_Txt_File(a, n);
 
-		for (int i = 0; i < n; i++) // КОНТРОЛЬНАЯ ПЕЧАТЬ МАССИВА (ПОТОМ МОЖНО УБРАТЬ)
+		for (int i = 0; i < n; i++) // РљРћРќРўР РћР›Р¬РќРђРЇ РџР•Р§РђРўР¬ РњРђРЎРЎРР’Рђ (РџРћРўРћРњ РњРћР–РќРћ РЈР‘Р РђРўР¬)
 			a[i].Print_Method();
 
-		cout << "Введите имя бинарного файла" << endl;
+		cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ Р±РёРЅР°СЂРЅРѕРіРѕ С„Р°Р№Р»Р°" << endl;
 		string path;
 		cin >> path;
 		ofstream out(path.c_str(), ios::binary);
 		Print_To_Binary_File(a, n, out);
 		out.close();
 
-		cout << "Считывание данных из бинарного файла:" << endl;
+		cout << "РЎС‡РёС‚С‹РІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· Р±РёРЅР°СЂРЅРѕРіРѕ С„Р°Р№Р»Р°:" << endl;
 		ifstream bin(path.c_str(), ios::binary);
 
-		cout << "Задайте тип самолета для поиска его пунктов назначения и номеров рейсов:" << endl;
+		cout << "Р—Р°РґР°Р№С‚Рµ С‚РёРї СЃР°РјРѕР»РµС‚Р° РґР»СЏ РїРѕРёСЃРєР° РµРіРѕ РїСѓРЅРєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ Рё РЅРѕРјРµСЂРѕРІ СЂРµР№СЃРѕРІ:" << endl;
 		char certain_type[30];
 		cin >> certain_type;
 
-		if (!Read_From_Binary_File(bin, certain_type)) cout << "Самолетов с указанным типом не найдено" << endl;
+		if (!Read_From_Binary_File(bin, certain_type)) cout << "РЎР°РјРѕР»РµС‚РѕРІ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј С‚РёРїРѕРј РЅРµ РЅР°Р№РґРµРЅРѕ" << endl;
 
 		delete[] a;
 		fin.close();
@@ -74,14 +74,14 @@ int main()
 	}
 	else
 	{
-		cout << "Ошибка открытия текстового файла" << endl;
+		cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°" << endl;
 	}
 
 	cin.ignore().get();
 	return 0;
 }
 
-void Read_From_Txt_File(AEROFLOT*& a, ifstream& fin, int& n) //функция,в которой так же используем метод считывания из текстового файла
+void Read_From_Txt_File(AEROFLOT*& a, ifstream& fin, int& n) //С„СѓРЅРєС†РёСЏ,РІ РєРѕС‚РѕСЂРѕР№ С‚Р°Рє Р¶Рµ РёСЃРїРѕР»СЊР·СѓРµРј РјРµС‚РѕРґ СЃС‡РёС‚С‹РІР°РЅРёСЏ РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°
 {
 	fin >> n;
 	a = new AEROFLOT[n];
@@ -89,14 +89,14 @@ void Read_From_Txt_File(AEROFLOT*& a, ifstream& fin, int& n) //функция,в которой
 	{
 		a[i].Reading_Method(fin);
 	}
-	cout << "Данные успешно считаны из текстового файла" << endl;
+	cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃС‡РёС‚Р°РЅС‹ РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°" << endl;
 }
 
 void Print_To_Binary_File(AEROFLOT* a, int n, ofstream& out)
 {
 	if (out.is_open())
 	{
-		cout << "Бинарный файл успешно открыт" << endl;
+		cout << "Р‘РёРЅР°СЂРЅС‹Р№ С„Р°Р№Р» СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚" << endl;
 		for (int i = 0; i < n; i++)
 		{
 			out.write((char*)&a[i], sizeof(a[i]));
@@ -104,12 +104,12 @@ void Print_To_Binary_File(AEROFLOT* a, int n, ofstream& out)
 	}
 	else
 	{
-		cout << "Ошибка открытия бинарного файла" << endl;
+		cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ Р±РёРЅР°СЂРЅРѕРіРѕ С„Р°Р№Р»Р°" << endl;
 	}
-	cout << "Данные успешно сохранены в бинарный файл" << endl;
+	cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ РІ Р±РёРЅР°СЂРЅС‹Р№ С„Р°Р№Р»" << endl;
 }
 
-void Sort_Txt_File(AEROFLOT* a, int n) //функция,являющаяся циклом для метода сравнения
+void Sort_Txt_File(AEROFLOT* a, int n) //С„СѓРЅРєС†РёСЏ,СЏРІР»СЏСЋС‰Р°СЏСЃСЏ С†РёРєР»РѕРј РґР»СЏ РјРµС‚РѕРґР° СЃСЂР°РІРЅРµРЅРёСЏ
 {
 	for (int i = 0; i < n - 1; i++)
 	{
