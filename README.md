@@ -1,1 +1,1 @@
-# 1course-2sem
+# 1c-2s
